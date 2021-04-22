@@ -26,12 +26,13 @@ export const PokemonCard = ( { pokemon }:Props ) => {
                          {'\n#' + pokemon.id}
                      </Text>
                  </View>
-
-                 <Image
-                    source={require('../assets/pokebola-blanca.png')}
-                    style={styles.pokebola}
-                 />
-
+                
+                   <View style={styles.pokebolaContainer} >
+                        <Image
+                            source={require('../assets/pokebola-blanca.png')}
+                            style={styles.pokebola}
+                        />
+                   </View>
                  <FadeInImage
                  uri={pokemon.picture}
                  style={styles.pokemonImage}
@@ -50,7 +51,17 @@ const styles = StyleSheet.create({
         height:120,
         width:160,
         marginBottom:25,
-        borderRadius:10
+        borderRadius:10,
+        shadowColor: "#000",
+        shadowOffset: {
+	    width: 0,
+	     height: 7,
+         },
+          shadowOpacity: 0.43,
+         shadowRadius: 9.51,
+
+        elevation: 15
+
     },
     name:{
         color:'white',
@@ -64,13 +75,24 @@ const styles = StyleSheet.create({
         height:100,
         position:"absolute",
         bottom:-20,
-        right:-20,
-        opacity:0.5
+        right:-25,
+        // opacity:0.5
     },
     pokemonImage:{
         width:120,
         height:120,
         position:'absolute',
-        right:-10
+        right:-7,
+        bottom:-7
+    },
+    pokebolaContainer:{
+        
+        width:100,
+        height:100,
+        position:'absolute',
+        bottom:0,
+        right:0,
+        overflow:'hidden',
+        opacity:0.6
     }
 });
