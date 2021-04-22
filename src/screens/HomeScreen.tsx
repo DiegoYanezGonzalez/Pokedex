@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, Image, FlatList, ActivityIndicator} from 'react-native';
+import { View, Text, Image, FlatList, ActivityIndicator} from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { PokemonCard } from '../components/PokemonCard';
 import { usePokemonPaginated } from '../hooks/usePokemonPaginated';
@@ -17,8 +17,10 @@ export const HomeScreen = () => {
                source={ require('../assets/pokebola.png')}
                style={styles.pokebolaBG}
             />
-
-           <FlatList
+      <View
+      style={{ alignItems:'center'}}
+      >
+      <FlatList
                data={simplePokemonList}
                keyExtractor={(pokemon)=>pokemon.id}
                showsVerticalScrollIndicator={false}
@@ -47,6 +49,10 @@ export const HomeScreen = () => {
                 color="grey"
                 />)}
            />
+      </View>
+           
+
+        
 
              {/*  */}
         </>
