@@ -1,6 +1,7 @@
 import React from 'react'
 import { View , Text, Image, FlatList, ActivityIndicator} from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
+import { FadeInImage } from '../components/FadeInImage'
 import { usePokemonPaginated } from '../hooks/usePokemonPaginated'
 import { styles } from '../theme/appTheme'
 
@@ -22,8 +23,8 @@ export const HomeScreen = () => {
                keyExtractor={(pokemon)=>pokemon.id}
                showsVerticalScrollIndicator={false}
                renderItem={ ( {item} ) =>(
-                   <Image
-                   source={{uri:item.picture}}
+                   <FadeInImage
+                   uri={item.picture}
                    style={{
                        width:150,
                        height:150
