@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import { useNavigation } from '@react-navigation/core';
+import React, { useEffect, useRef, useState } from 'react';
 import { Dimensions, Image, StyleSheet } from 'react-native';
 import { Text, TouchableOpacity, View } from 'react-native';
 
@@ -18,24 +19,25 @@ export const PokemonCard = ( { pokemon }:Props ) => {
 
 
      const [bgColor, setbgColor] = useState('grey');
+     const isMounted = useRef(true); 
 
+     const navigation = useNavigation();
 
      useEffect(() => {
          
         ImageColors.getColors(pokemon.picture,{fallback:'grey'})
         .then( colors =>{ 
+           
+            if(!isMounted.current) return;
+
             (colors.platform === 'android')
             ? setbgColor(colors.dominant || 'grey')
             : setbgColor(colors.background || 'grey')
 
-        })  
-              
-        
-
-        //IOS background
-
-        //ANDROID dominant
-         
+        }); 
+         return()=>{
+             isMounted.current = false
+         }
      }, [])
 
 
@@ -43,6 +45,10 @@ export const PokemonCard = ( { pokemon }:Props ) => {
     return (
         <TouchableOpacity
         activeOpacity={0.7}
+        onPress={() => navigation.navigate('PokemonScreen', {
+             simplePokemon:pokemon,
+             color:bgColor
+             } )}
         >
              <View style={{
                  ...styles.cardContainer,
