@@ -1,7 +1,9 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
 import { Text, TouchableOpacity, View } from 'react-native';
 import { SimplePokemon } from '../interfaces/pokemonInterfaces';
+
+const windowWidth = Dimensions.get('window').width
 
 interface Props{
     pokemon:SimplePokemon;
@@ -9,10 +11,20 @@ interface Props{
 
 export const PokemonCard = ( { pokemon }:Props ) => {
     return (
-        <TouchableOpacity>
+        <TouchableOpacity
+        activeOpacity={0.7}
+        >
              <View style={{
-                 ...styles.cardContainer
+                 ...styles.cardContainer,
+                 width:windowWidth * 0.4
              }}>
+
+                 <View>
+                     <Text style={styles.name}>
+                         {pokemon.name}
+                         {'\n#' + pokemon.id}
+                     </Text>
+                 </View>
 
              </View>
         </TouchableOpacity>
@@ -28,5 +40,12 @@ const styles = StyleSheet.create({
         width:160,
         marginBottom:25,
         borderRadius:10
+    },
+    name:{
+        color:'white',
+        fontSize:20,
+        fontWeight:'bold',
+        top:20,
+        left:10
     }
 });
