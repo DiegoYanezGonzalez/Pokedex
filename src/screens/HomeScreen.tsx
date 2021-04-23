@@ -51,11 +51,6 @@ export const HomeScreen = () => {
                 />)}
            />
       </View>
-           
-
-        
-
-             {/*  */}
         </>
     )
 }

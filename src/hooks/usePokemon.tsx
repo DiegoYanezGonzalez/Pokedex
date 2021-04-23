@@ -5,13 +5,13 @@ import { PokemonFull } from "../interfaces/pokemonInterfaces";
 
 export const usePokemon = ( id:string ) => {
     
-const [isLoading, setisLoading] = useState(true);
-const [pokemon, setpokemon] = useState<PokemonFull>( {} as PokemonFull );
+const [isLoading, setIsLoading] = useState(true);
+const [pokemon, setPokemon] = useState<PokemonFull>( {} as PokemonFull );
 
 const loadPokemon = async () =>{
-   const resp = await pokemonApi.get(`https://pokeapi.co/api/v2/pokemon/${id}`)
-   setpokemon(resp.data);
-   setisLoading(false);
+   const resp = await pokemonApi.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
+   setPokemon(resp.data);
+   setIsLoading(false);
 }
 
 useEffect(() => {

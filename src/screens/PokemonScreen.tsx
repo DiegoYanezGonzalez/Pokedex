@@ -12,11 +12,11 @@ interface Props extends StackScreenProps<RootStackParams, 'PokemonScreen'>{};
 
 export const PokemonScreen = ({navigation,route} : Props) => {
     
-  const { simplePokemon,color } = route.params;
+  const { simplePokemon, color } = route.params;
   const { id,name,picture } = simplePokemon;
   const {top} = useSafeAreaInsets();
 
-    const {isLoading,pokemon }= usePokemon(id)
+    const {isLoading,pokemon }= usePokemon(id);
     console.log(pokemon);
 
     return (
@@ -67,10 +67,10 @@ export const PokemonScreen = ({navigation,route} : Props) => {
 
         {/* Detalles y Loading */}
         <View style={styles.loadingIndicator}>
-            <ActivityIndicator>
-                color={color}
-                size={50}
-            </ActivityIndicator>
+            <ActivityIndicator
+                 color={color}
+                size={50} >
+            </ActivityIndicator>  
         </View>
 
    </View>
