@@ -76,7 +76,7 @@ export const PokemonScreen = ({navigation,route} : Props) => {
             </ActivityIndicator>  
         </View>
         )
-        : <PokemonDetails/>
+        : <PokemonDetails pokemon={pokemon} />
         }
         
         
