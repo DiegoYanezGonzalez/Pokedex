@@ -105,12 +105,11 @@ export const PokemonDetails = ( {pokemon}:Props) => {
             </View>
         </View>
 
-        {/* Habilidades */}
+        {/* Movimientos */}
 
         <View style={styles.container
             }> 
 
-            {/* Habilidades */}
             <Text
             style={styles.title}>Movimientos</Text>
              <View style={{flexDirection:"row" , flexWrap:"wrap"}}>
@@ -125,6 +124,53 @@ export const PokemonDetails = ( {pokemon}:Props) => {
                    ))
                }
             </View>
+        </View>
+
+        {/* Stats */}
+
+        <View style={styles.container
+        
+            }> 
+
+            <Text
+            style={styles.title}>Stats</Text>
+             <View style={{}}>
+            {
+                   pokemon.stats.map( (stat,i) =>(
+
+                    <View key={stat.stat.name+i}
+                    style={{flexDirection:"row"}} >
+                        <Text style={{
+                            ...styles.regularText,
+                            marginRight:10,
+                            width:150
+                            
+                            }} key={stat.stat.name}>
+                            {stat.stat.name}
+                        </Text>
+
+                        <Text style={{
+                            ...styles.regularText,
+                            fontWeight:"bold"
+                            }} >
+                            {stat.base_stat}
+                        </Text>
+                    </View>    
+                   ))
+               }
+            </View>
+
+         {/* Sprite Final */}
+
+         <View style={{
+             marginBottom:30,
+             alignItems:"center"
+         }}> 
+         <FadeInImage
+              style={styles.basicSprites}
+              uri={pokemon.sprites.front_default}
+              />
+         </View>
         </View>
 
         
