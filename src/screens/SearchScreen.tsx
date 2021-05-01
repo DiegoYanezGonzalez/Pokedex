@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from 'react';
 import { Dimensions, StyleSheet } from 'react-native';
 import { FlatList } from 'react-native';
 import { View, Text, Platform, ActivityIndicator } from 'react-native';
@@ -17,6 +18,8 @@ const SearchScreen = () => {
 const {top} = useSafeAreaInsets();
 const {isFetching,simplePokemonList} = usePokemonSearch();
 
+const [term, setTerm] = useState('');
+
 if(isFetching) {
     return<Loading/>
 }
@@ -29,6 +32,7 @@ if(isFetching) {
 
 
              <SearchInput 
+             onDebounce={(value) => setTerm( value )}
              style={{
                  position:'absolute',
                  zIndex:999,
@@ -51,7 +55,7 @@ if(isFetching) {
                     ...styles.globalMargin,
                     paddingBottom:10,
                     marginTop:(Platform.OS === 'ios') ? top +60: top +60
-                     }}>Pokedex</Text>
+                     }}> {term} </Text>
 
                )}
                renderItem={ ( {item} ) =>( <PokemonCard pokemon={item}  /> )}
