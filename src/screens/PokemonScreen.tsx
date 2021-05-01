@@ -7,7 +7,7 @@ import  Icon  from 'react-native-vector-icons/Ionicons';
 import { FadeInImage } from '../components/FadeInImage';
 import { PokemonDetails } from '../components/PokemonDetails';
 import { usePokemon } from '../hooks/usePokemon';
-import { RootStackParams } from '../navigator/Navigator';
+import { RootStackParams } from '../navigator/Tab1';
 
 interface Props extends StackScreenProps<RootStackParams, 'PokemonScreen'>{};
 
