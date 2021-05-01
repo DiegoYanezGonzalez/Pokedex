@@ -29,11 +29,23 @@ useEffect(() => {
        return setPokemonFiltered([]);
    }
 
-   setPokemonFiltered(
-       simplePokemonList .filter( 
-           (poke) => poke.name.toLocaleLowerCase()
-           .includes(term.toLocaleLowerCase()))
-   )
+
+   if(isNaN(Number(term) ) ){
+    setPokemonFiltered(
+        simplePokemonList .filter( 
+            (poke) => poke.name.toLocaleLowerCase()
+            .includes(term.toLocaleLowerCase())
+            )
+      );
+   } else {
+       const pokemonById = simplePokemonList.find(poke => poke.id === term );
+     setPokemonFiltered(
+              (pokemonById ) ? [pokemonById] : []
+         );
+     
+   }
+
+   
     
 }, [term])
 
