@@ -1,4 +1,5 @@
 import React from 'react';
+import { useEffect } from 'react';
 import { useState } from 'react';
 import { Dimensions, StyleSheet } from 'react-native';
 import { FlatList } from 'react-native';
@@ -8,6 +9,7 @@ import { Loading } from '../components/Loading';
 import { PokemonCard } from '../components/PokemonCard';
 import { SearchInput } from '../components/SearchInput';
 import { usePokemonSearch } from '../hooks/usePokemonSearch';
+import { SimplePokemon } from '../interfaces/pokemonInterfaces';
 import {styles} from '../theme/appTheme';
 
 
@@ -18,7 +20,23 @@ const SearchScreen = () => {
 const {top} = useSafeAreaInsets();
 const {isFetching,simplePokemonList} = usePokemonSearch();
 
+const [pokemonFiltered, setPokemonFiltered] = useState<SimplePokemon[]>([]);
+
 const [term, setTerm] = useState('');
+
+useEffect(() => {
+   if( term.length === 0){
+       return setPokemonFiltered([]);
+   }
+
+   setPokemonFiltered(
+       simplePokemonList .filter( 
+           (poke) => poke.name.toLocaleLowerCase()
+           .includes(term.toLocaleLowerCase()))
+   )
+    
+}, [term])
+
 
 if(isFetching) {
     return<Loading/>
@@ -42,7 +60,7 @@ if(isFetching) {
              /> 
 
             <FlatList
-               data={simplePokemonList}
+               data={pokemonFiltered}
                keyExtractor={(pokemon)=>pokemon.id}
                showsVerticalScrollIndicator={false}
                numColumns={ 2 }
